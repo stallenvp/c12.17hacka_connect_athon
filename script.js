@@ -1,23 +1,23 @@
+$(document).ready(initializeApp);
+
+function initializeApp() {
+    $('#0').click(getId);
+    $('#1').click(getId);
+    $('#2').click(getId);
+    $('#3').click(getId);
+    $('#4').click(getId);
+    $('#5').click(getId);
+    $('#6').click(getId);
+}
 
 
+function getId() {
+    var idOfColumn = $(this).attr('id');
+    console.log(idOfColumn);
+    return idOfColumn;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var board= [
+var board = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
@@ -36,7 +36,7 @@ function playerToggle(){
 }
 
 function updateBoard(colValue){
-    for(r = board.length-1; r>=0; r-- ){
+    for(var r = board.length-1; r>=0; r-- ){
         if(board[r][colValue]===0){
             board[r][colValue]=player;
             playerToggle();
@@ -45,3 +45,4 @@ function updateBoard(colValue){
     }
 
 }
+
