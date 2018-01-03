@@ -9,29 +9,25 @@ function initializeApp() {
     $('#5').click(clickHandler);
     $('#6').click(clickHandler);
 }
-
+var tokenImages = ['images/trx.png','images/corecoin.png']
 // click handler functions
-
-function getId() {
-    var idOfColumn = $(this).attr('id');
-    updateBoard(idOfColumn);
-    console.log(board);
-    checkForWin();
-}
-
 
 function coinCreation(col,bottom) {
     var token = $('<div>').addClass('token');
     $(token).css('bottom', bottom);
-    var img = $('<img>').attr('src','images/trx.png');
+    var img = $('<img>').attr('src',tokenImages[player-1]);
     img.appendTo(token);
     token.appendTo(col);
 }
 
 function clickHandler() {
+    var idOfColumn = $(this).attr('id');
+    updateBoard(idOfColumn);
+    console.log(board);
     var bottom = 0.1;
     var col = $(this);
     coinCreation(col,bottom);
+    checkForWin();
 }
 
 
@@ -58,6 +54,7 @@ function playerToggle(){
         player = 1;
     }
 }
+
 function updateBoard(colValue){
     for(var r = board.length-1; r>=0; r-- ){
         if(board[r][colValue]===0){
