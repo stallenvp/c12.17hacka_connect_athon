@@ -12,25 +12,35 @@ function initializeApp() {
 var tokenImages = ['images/trx.png','images/corecoin.png']
 // click handler functions
 
-function coinCreation(col,bottom) {
+function coinCreation(col) {
     var token = $('<div>').addClass('token');
-    $(token).css('bottom', bottom);
     var img = $('<img>').attr('src',tokenImages[player-1]);
     img.appendTo(token);
     token.appendTo(col);
+    return token;
 }
+var bottomPositions =
+    [
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1
+    ];
 
 function clickHandler() {
     var idOfColumn = $(this).attr('id');
     updateBoard(idOfColumn);
+    var currentStart = bottomPositions[idOfColumn];
     console.log(board);
-    var bottom = 0.1;
     var col = $(this);
-    coinCreation(col,bottom);
+    var token = coinCreation(col);
+    $(token).animate({bottom: currentStart+'%'}, 1000);
+    bottomPositions[idOfColumn] += 16.8;
     checkForWin();
 }
-
-
 
 
 // game board logic functions
