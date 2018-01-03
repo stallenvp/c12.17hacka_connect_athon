@@ -1,20 +1,15 @@
 $(document).ready(initializeApp);
 
 function initializeApp() {
-    $('#0').click(getId);
-    $('#1').click(getId);
-    $('#2').click(getId);
-    $('#3').click(getId);
-    $('#4').click(getId);
-    $('#5').click(getId);
-    $('#6').click(getId);
+    $('.col').click(getId);
 }
 
 
 function getId() {
     var idOfColumn = $(this).attr('id');
-    console.log(idOfColumn);
-    return idOfColumn;
+    updateBoard(idOfColumn);
+    checkForWin();
+    console.log(board);
 }
 
 var board = [
@@ -44,5 +39,33 @@ function updateBoard(colValue){
         }
     }
 
+}
+function checkForWin(){
+    var height = board.length; //6
+    var width = board[0].length;  //7
+    for(var r=height-1; r>=0; r--){ //iterate rows bottom to top;
+        for(var c=0; c<width-1;c++){ //iterate columns right to left;
+            var playerPosition = board[r][c];
+            if(playerPosition===0){
+                continue;
+            }
+            if(c+3 < width &&
+            playerPosition == board[r][c+1] &&
+            playerPosition == board[r][c+2] &&
+            playerPosition == board[r][c+3]){  //checks to the right
+                console.log("player " + playerPosition + "wins");
+            }
+            if(r-3 >= 0 &&
+            playerPosition == board[r-1][c] &&
+            playerPosition == board[r-2][c] &&
+            playerPosition == board[r-3][c]){
+                console.log("player " + playerPosition + "wins");
+            }
+
+
+
+
+        }
+    }
 }
 
