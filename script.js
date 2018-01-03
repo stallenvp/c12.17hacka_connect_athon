@@ -20,7 +20,9 @@ var board = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0]
 ];
+
 var player = 1;
+
 function playerToggle(){
     if(player===1){
         player =2;
