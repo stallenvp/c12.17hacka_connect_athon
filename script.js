@@ -15,8 +15,8 @@ function initializeApp() {
 function getId() {
     var idOfColumn = $(this).attr('id');
     updateBoard(idOfColumn);
-    checkForWin();
     console.log(board);
+    checkForWin();
 }
 
 
@@ -77,20 +77,31 @@ function checkForWin(){
                 continue;
             }
             if(c+3 < width &&
-            playerPosition == board[r][c+1] &&
+            playerPosition == board[r][c+1] &&  //checks to the right
             playerPosition == board[r][c+2] &&
-            playerPosition == board[r][c+3]){  //checks to the right
+            playerPosition == board[r][c+3]){
                 console.log("player " + playerPosition + "wins");
             }
-            if(r-3 >= 0 &&
-            playerPosition == board[r-1][c] &&
-            playerPosition == board[r-2][c] &&
-            playerPosition == board[r-3][c]){
-                console.log("player " + playerPosition + "wins");
+            if(r-3 >= 0){
+                if(playerPosition == board[r-1][c] && //checks above
+                    playerPosition == board[r-2][c] &&
+                    playerPosition == board[r-3][c]){
+                    console.log("player " + playerPosition + "wins");
+                }
+                if(c+3< width &&
+                    playerPosition == board[r-1][c+1] && //check up and right
+                    playerPosition == board[r-2][c+2] &&
+                    playerPosition == board[r-3][c+3]){
+                    console.log("player " + playerPosition + "wins");
+                }
+                if(c-3 >=0 &&
+                    playerPosition ==board[r-1][c-1]&&  //check up and left
+                    playerPosition ==board[r-2][c-2]&&
+                    playerPosition ==board[r-3][c-3]){
+                    console.log("player " + playerPosition + "wins");
+                }
+
             }
-
-
-
 
         }
     }
