@@ -26,6 +26,7 @@ function initializeApp() {
 
     //mute sound click handler
     $('.muteButton').click(muteSound);
+
 }
 
 
