@@ -320,6 +320,20 @@ function stopCoinShakeAudio(){
     coinShakeAudio.currentTime = 0;
     coinShakeAudio.loop = true;
 }
+function muteSound(){
+    if(coinShakeAudio.volume === 0){
+        coinShakeAudio.volume = .5;
+        coinLaunchAudio.volume = .5;
+        tokenDropAudio.volume = .5;
+        victoryMusicAudio.volume = .5;
+    }
+    else{
+        coinShakeAudio.volume = 0;
+        coinLaunchAudio.volume = 0;
+        tokenDropAudio.volume = 0;
+        victoryMusicAudio.volume = 0;
+    }
+}
 function runTokenDropAudio(){
     tokenDropAudio.pause();
     tokenDropAudio.currentTime = 0;
