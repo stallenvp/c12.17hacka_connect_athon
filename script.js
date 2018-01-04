@@ -11,6 +11,9 @@ function initializeApp() {
     selectionPageCoinCreation();
     //create fly animation for selection page coins
     $('.selectionPageCoin').click(coinFly);
+    //create sound animation on hovering over selection page coins
+    $('.selectionPageCoin').onmouseover(coinShake);
+
 
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
@@ -226,5 +229,14 @@ function coinFly() {
         tokenImages.push(tokenSource);
     }
 }
+
+function coinShake(soundobj) {
+        var thissound=document.getElementById(soundobj);
+        thissound.play();
+    }
+
+var titleAudio = new Audio(“sounds/coinsound.wav”);
+titleAudio.play();               //MUTED TEMP
+titleAudio.volume=.8;
 
 

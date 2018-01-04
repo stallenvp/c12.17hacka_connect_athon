@@ -61,6 +61,7 @@ body {
     animation-name: fadeIn;
     animation-duration: 2s;
     z-index: 6;
+    display: none;
 }
 .startPage.hidden {
     position: absolute;
@@ -117,7 +118,7 @@ body {
     background-image: url("images/selectionpage.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    visibility: hidden;
+    /*visibility: hidden;*/
     z-index: 4;
 
     /*display: none;*/
@@ -386,7 +387,7 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 5;
-    /*display: none;*/
+    visibility: hidden;
 }
 
 .drawPage{
@@ -400,6 +401,7 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 5;
+    visibility: hidden;
     /*display: none;*/
 }
 .victoryPage.fadeOut{
