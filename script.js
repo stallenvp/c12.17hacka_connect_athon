@@ -22,6 +22,9 @@ function initializeApp() {
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
     $(".playAgainButton").click(playGameAgain);
+
+    //mute sound click handler
+    $('.muteButton').click(muteSound);
 }
 
 
