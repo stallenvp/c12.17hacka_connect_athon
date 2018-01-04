@@ -9,10 +9,46 @@ body {
     height: 100vh;
     margin: 0;
 }
+@keyframes fadeOut {
+    from {
+        opacity: .9;
+        visibility: visible
+    }
+    to {
+        opacity: 0;
+        visibility: hidden
+    }
+}
+@keyframes fadeIn {
+    from { opacity: 0; visibility: hidden }
+    to { opacity: .9; visibility: visible}
+
+}
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translate(-20%); visibility: hidden }
+    to { opacity: .9; transform: translate(0%); visibility: visible}
+
+}
+@keyframes fadeOutShrink {
+    from{opacity: 1; transform: scale(1); visibility: visible}
+    to{opacity: 0; transform: scale(0); visibility: hidden}
+}
+
+.overlay{
+    position: absolute;
+    height:100%;
+    width: 100%;
+    background: black;
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    z-index: 8;
+}
 
 /* start page */
 
 .startPage {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,8 +58,25 @@ body {
     background-image: url("images/startpage.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: 5;
-    /*display: none;*/
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    z-index: 6;
+}
+.startPage.hidden {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/startpage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation-name: fadeOutShrink;
+    animation-duration: .7s;
+    z-index: 6;
+    visibility: hidden;
 }
 
 .startPageText, .drawPageText, .victoryPageText {
@@ -46,10 +99,13 @@ body {
     cursor: pointer;
     color: #1b6d85;
     border-color: #1b6d85;
+    transform: scale(1.1);
+}
+.playButton:active{
+    transform: scale(.9);
 }
 
 /* coin selection page */
-
 .selectionPage {
     position: absolute;
     display: flex;
@@ -61,6 +117,26 @@ body {
     background-image: url("images/selectionpage.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    visibility: hidden;
+    z-index: 4;
+
+    /*display: none;*/
+}
+
+.selectionPage.visible {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/selectionpage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation-name: fadeInRight;
+    animation-duration: 2s;
+    visibility: visible;
     z-index: 4;
     /*display: none;*/
 }
@@ -117,7 +193,18 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    display: none;
+    z-index: 2;
+    visibility: hidden;
+}
+.container.visible {
+    background-image: url("images/wallpaper1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    animation-name: fadeInRight;
+    animation-duration: .4s;
+    z-index: 2;
 }
 
 /* Header Design Layout */
@@ -234,7 +321,7 @@ img.playerOneImg {
     flex-flow: row wrap;
     height: 100%;
     width: 14.285%;
-    border: 1px solid;
+    border: 1px solid white;
     opacity: 1;
     cursor: pointer;
 
@@ -285,16 +372,7 @@ img {
 /*}*/
 
 /*Draw and Victory Screens*/
-@keyframes fadeOut {
-    from {
-        opacity: .9;
-        visibility: visible
-    }
-    to {
-        opacity: 0;
-        visibility: hidden
-    }
-}
+
 .victoryPage{
     display: flex;
     justify-content: center;
