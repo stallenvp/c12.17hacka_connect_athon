@@ -55,7 +55,8 @@ function clickHandler() {
     var token = coinCreation(col);
     $(token).animate({bottom: currentStart+'%'}, 1000);
     bottomPositions[idOfColumn] += 16.8;
-    runTokenDropAudio();
+    // runTokenDropAudio();
+    setTimeout(runTokenDropAudio, 780);
     $('.col').toggleClass("playerTwo");
 
     checkForWin();
@@ -306,7 +307,7 @@ function playerTwoCoinDrop() {
 
 // Audio Javascript
 var coinShakeAudio = new Audio("sounds/coinsound.wav");
-var tokenDropAudio = new Audio("sounds/dropToken.wav");
+var tokenDropAudio = new Audio("sounds/dropToken1.wav");
 var coinLaunchAudio = new Audio("sounds/coinLaunchOff.wav");
 function runCoinShakeAudio() {
     coinShakeAudio.play();
@@ -316,8 +317,12 @@ function stopCoinShakeAudio(){
     coinShakeAudio.currentTime = 0;
 }
 function runTokenDropAudio(){
+    tokenDropAudio.pause();
+    tokenDropAudio.currentTime = 0;
     tokenDropAudio.play();
 }
 function coinLaunchOff(){
+    coinLaunchAudio.pause();
+    coinLaunchAudio.currentTime = 0;
     coinLaunchAudio.play();
 }
