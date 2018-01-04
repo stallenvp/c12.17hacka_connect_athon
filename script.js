@@ -1,5 +1,8 @@
 $(document).ready(initializeApp);
 
+
+// click handlers and functions that need to run on load
+
 function initializeApp() {
     $('#0').click(clickHandler);
     $('#1').click(clickHandler);
@@ -16,12 +19,8 @@ function initializeApp() {
     $(".playButton").click(removeTitlePage);
 }
 
-
-// click handler functions
-var tokenImages = [];
-
-
 //create coins
+
 function coinCreation(col) {
     var token = $('<div>').addClass('token');
     var img = $('<img>').attr('src',tokenImages[player-1]);
@@ -30,16 +29,9 @@ function coinCreation(col) {
     return token;
 }
 //array to track each column's bottom position to update for when coin drops in
+
 var bottomPositions =
-    [
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1
-    ];
+    [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
 
 function clickHandler() {
     var idOfColumn = $(this).attr('id');
@@ -47,7 +39,6 @@ function clickHandler() {
         return;
     }
     updateBoard(idOfColumn);
-
     var currentStart = bottomPositions[idOfColumn];
     console.log(board);
     var col = $(this);
@@ -60,6 +51,7 @@ function clickHandler() {
 }
 
 //function to reset game
+
 function resetGame(){
     $(".token").remove();
     bottomPositions =
@@ -78,6 +70,9 @@ function resetGame(){
 
 }
 
+// array to hold src for each image when chosen from selection page
+
+var tokenImages = [];
 
 // game board logic functions
 
@@ -110,6 +105,9 @@ function updateBoard(colValue){
         }
     }
 }
+
+//function main check for win function that will look in all directions
+
 function checkForWin(){
     var height = board.length; //6
     var width = board[0].length;  //7
@@ -154,6 +152,7 @@ function checkForWin(){
         }
     }
 }
+// function that increments the counter for each player per win
 
 function winGame(playerPosition) {
     if(playerPosition === 1) {
@@ -167,6 +166,7 @@ function winGame(playerPosition) {
     }
 }
 //checks to see if the game is a draw
+
 function checkForDraw(){
     var counter = 0;
     for(var c = 0; c<board[0].length; c++){
@@ -230,8 +230,11 @@ function addMainPage(){
     $(".selectionPage").addClass("hidden");
     $(".selectionPage").removeClass("visible");
     $(".container").addClass("visible");
-
+    playerOneCoinDrop();
+    playerTwoCoinDrop();
 }
+
+// function to take coin off page once it is selected by a player
 
 function coinFly() {
     var topMeasure = 10000;
@@ -247,7 +250,23 @@ function coinFly() {
         setTimeout(addMainPage, 800);
         return;
     }
+}
 
+// Functions that create coin when coin falls onto main game screen
+
+function playerOneCoinDrop() {
+    var playerOneToken = $('<div>').addClass('tokenPerPlayer');
+    var playerOneCoinImg = $('<img>').attr('src',tokenImages[0]);
+    playerOneCoinImg.appendTo(playerOneToken);
+    playerOneToken.appendTo($('.leftArea'));
+    $(playerOneToken).animate({bottom: 45+'%'}, 1500);
+}
+function playerTwoCoinDrop() {
+    var playerTwoToken = $('<div>').addClass('tokenPerPlayer');
+    var playerTwoCoinImg = $('<img>').attr('src',tokenImages[1]);
+    playerTwoCoinImg.appendTo(playerTwoToken);
+    playerTwoToken.appendTo($('.rightArea'));
+    $(playerTwoToken).animate({bottom: 45+'%'}, 1900);
 }
 
 
