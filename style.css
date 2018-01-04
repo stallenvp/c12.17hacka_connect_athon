@@ -285,6 +285,7 @@ body {
     width: 100%;
 }
 .leftArea {
+    position: relative;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -301,13 +302,6 @@ body {
     text-shadow: 5px 5px black;
     text-align: center;
 }
-.playerOneImg {
-    height: 40%;
-    width: 40%;
-}
-img.playerOneImg {
-    margin: auto;
-}
 .winCounter {
     font-family: 'Orbitron', sans-serif;
     font-size: 5vmin;
@@ -322,6 +316,7 @@ img.playerOneImg {
     text-shadow: 5px 5px black;
 }
 .rightArea {
+    position: relative;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -405,6 +400,13 @@ img.playerOneImg {
     bottom: 130%;
     z-index: 0;
 
+}
+.tokenPerPlayer {
+    position: absolute;
+    height: 25%;
+    width: 35%;
+    right: 32%;
+    bottom: 1000%;
 }
 img {
     width: 100%;
