@@ -14,7 +14,6 @@ function initializeApp() {
 
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
-
 }
 
 
@@ -125,6 +124,7 @@ function checkForWin(){
             playerPosition == board[r][c+2] &&
             playerPosition == board[r][c+3]){
                 console.log("player " + playerPosition + " wins");
+                winGame(playerPosition);
             }
             if(r-3 >= 0){
                 if(playerPosition == board[r-1][c] && //checks above
@@ -132,6 +132,7 @@ function checkForWin(){
                     playerPosition == board[r-3][c]){
                     console.log("player " + playerPosition + "wins");
                     $('.victoryPageText').text("Player " + playerPosition + " Wins!");
+                    winGame(playerPosition);
                 }
                 if(c+3< width &&
                     playerPosition == board[r-1][c+1] && //check up and right
@@ -139,6 +140,7 @@ function checkForWin(){
                     playerPosition == board[r-3][c+3]){
                     console.log("player " + playerPosition + "wins");
                     $('.victoryPageText').text("Player " + playerPosition + " Wins!");
+                    winGame(playerPosition);
                 }
                 if(c-3 >=0 &&
                     playerPosition ==board[r-1][c-1]&&  //check up and left
@@ -146,6 +148,7 @@ function checkForWin(){
                     playerPosition ==board[r-3][c-3]){
                     console.log("player " + playerPosition + "wins");
                     $('.victoryPageText').text("Player " + playerPosition + " Wins!");
+                    winGame(playerPosition);
                 }
             }
         }
@@ -154,11 +157,13 @@ function checkForWin(){
 
 function winGame(playerPosition) {
     if(playerPosition === 1) {
-        var winCounter = $('.leftNumber').text();
+        var winCounter = parseInt($('.leftNumber').text());
         winCounter++;
+        $('.leftNumber').text(winCounter);
     } else if (playerPosition === 2) {
-        var winCounter = $('.rightNumber').text();
+        var winCounter = parseInt($('.rightNumber').text());
         winCounter++;
+        $('.rightNumber').text(winCounter);
     }
 }
 //checks to see if the game is a draw
