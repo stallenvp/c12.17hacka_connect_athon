@@ -85,8 +85,9 @@ function resetGame(){
     tokenImages=[];
     $('.selectionPageCoin').click(coinFly);
     $('.selectionPageText').text("Player One Pick").css("color", "#ff42be");
-
-
+    $('.tokenPerPlayer').remove();
+    $('.selectionPageCoin').on('mouseover',runCoinShakeAudio);
+    $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
 }
 
 // array to hold src for each image when chosen from selection page
@@ -293,14 +294,14 @@ function coinFly() {
 
 function playerOneCoinDrop() {
     var playerOneToken = $('<div>').addClass('tokenPerPlayer');
-    var playerOneCoinImg = $('<img>').attr('src',tokenImages[0]);
+    var playerOneCoinImg = $('<img>').attr('src',tokenImages[1]);
     playerOneCoinImg.appendTo(playerOneToken);
     playerOneToken.appendTo($('.leftArea'));
     $(playerOneToken).animate({bottom: 45+'%'}, 1500);
 }
 function playerTwoCoinDrop() {
     var playerTwoToken = $('<div>').addClass('tokenPerPlayer');
-    var playerTwoCoinImg = $('<img>').attr('src',tokenImages[1]);
+    var playerTwoCoinImg = $('<img>').attr('src',tokenImages[0]);
     playerTwoCoinImg.appendTo(playerTwoToken);
     playerTwoToken.appendTo($('.rightArea'));
     $(playerTwoToken).animate({bottom: 45+'%'}, 1900);

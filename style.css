@@ -438,7 +438,7 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     animation-name: fadeInGrow;
-    animation-duration: .5s;
+    animation-duration: 1.7s;
     z-index: 5;
     visibility: visible;
 }
