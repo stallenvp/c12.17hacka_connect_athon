@@ -37,9 +37,18 @@ body {
     to { opacity: 1; transform: scale(1); visibility: visible}
 
 }
+@keyframes fadeInGrowUp {
+    from { opacity: 0; transform: scale(0) translateY(-50%); visibility: hidden }
+    to { opacity: 1; transform: scale(1) translate(0%); visibility: visible}
+
+}
 @keyframes fadeOutShrink {
     from{opacity: 1; transform: scale(1); visibility: visible}
     to{opacity: 0; transform: scale(0); visibility: hidden}
+}
+@keyframes fadeOutShrinkDown {
+    from{opacity: 1; transform: scale(1) translateY(0%); visibility: visible}
+    to{opacity: 0; transform: scale(0) translateY(70%); visibility: hidden}
 }
 
 .overlay{
@@ -142,7 +151,7 @@ body {
     background-repeat: no-repeat;
     visibility: hidden;
     z-index: 4;
-    animation-name: fadeOutShrink;
+    animation-name: fadeOutShrinkDown;
     animation-duration: .7s;
 }
 
@@ -231,7 +240,7 @@ body {
     z-index: 2;
     visibility: hidden;
     animation: fadeOutShrink;
-    animation-duration: 2s;
+    animation-duration: 1.3s;
 }
 
 .container.visible {
@@ -241,8 +250,8 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    animation-name: fadeInGrow;
-    animation-duration: 1s;
+    animation-name: fadeInGrowUp;
+    animation-duration: .7s;
     z-index: 2;
     visibility: visible;
 }
@@ -275,6 +284,7 @@ body {
     width: 100%;
 }
 .leftArea {
+    position: relative;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -291,13 +301,6 @@ body {
     text-shadow: 5px 5px black;
     text-align: center;
 }
-.playerOneImg {
-    height: 40%;
-    width: 40%;
-}
-img.playerOneImg {
-    margin: auto;
-}
 .winCounter {
     font-family: 'Orbitron', sans-serif;
     font-size: 5vmin;
@@ -312,6 +315,7 @@ img.playerOneImg {
     text-shadow: 5px 5px black;
 }
 .rightArea {
+    position: relative;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -396,12 +400,20 @@ img.playerOneImg {
     z-index: 0;
 
 }
+.tokenPerPlayer {
+    position: absolute;
+    height: 25%;
+    width: 35%;
+    right: 32%;
+    bottom: 1000%;
+}
 img {
     width: 100%;
     height: 100%;
 }
 
 .victoryPage{
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -414,8 +426,47 @@ img {
     z-index: 5;
     visibility: hidden;
 }
+.victoryPage.visible{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/WinScreen.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation-name: fadeInGrow;
+    animation-duration: .5s;
+    z-index: 5;
+    visibility: visible;
+}
+.playAgainButton{
+    font-size: 5vmin;
+    color: seashell;
+    text-shadow: 5px 5px black;
+    border: 2px solid seashell;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 15%;
+    padding: 1%;
+}
+.playAgainButton:hover {
+    cursor: pointer;
+    color: #1b6d85;
+    border-color: #1b6d85;
+    transform: scale(1.1);
+}
+.playAgainButton:active{
+    transform: scale(.9);
+}
+.victoryPageText {
+    position: absolute;
+    top: 8%;
+}
 
 .drawPage{
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,5 +1,8 @@
 $(document).ready(initializeApp);
 
+
+// click handlers and functions that need to run on load
+
 function initializeApp() {
     $('#0').click(clickHandler);
     $('#1').click(clickHandler);
@@ -16,10 +19,9 @@ function initializeApp() {
     $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
     //create sound animation onclick to drop each token
 
-
-
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
+    $(".playAgainButton").click(playGameAgain);
 }
 
 
@@ -37,16 +39,9 @@ function coinCreation(col) {
     return token;
 }
 //array to track each column's bottom position to update for when coin drops in
+
 var bottomPositions =
-    [
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1
-    ];
+    [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
 
 function clickHandler() {
     var idOfColumn = $(this).attr('id');
@@ -54,7 +49,6 @@ function clickHandler() {
         return;
     }
     updateBoard(idOfColumn);
-
     var currentStart = bottomPositions[idOfColumn];
     console.log(board);
     var col = $(this);
@@ -70,6 +64,7 @@ function clickHandler() {
 }
 
 //function to reset game
+
 function resetGame(){
     $(".token").remove();
     bottomPositions =
@@ -85,9 +80,18 @@ function resetGame(){
     ];
     player = 1;
     $('.col').removeClass("playerTwo");
+    $(".coinBox").empty();
+    selectionPageCoinCreation();
+    tokenImages=[];
+    $('.selectionPageCoin').click(coinFly);
+    $('.selectionPageText').text("Player One Pick").css("color", "#ff42be");
+
 
 }
 
+// array to hold src for each image when chosen from selection page
+
+var tokenImages = [];
 
 // game board logic functions
 
@@ -120,6 +124,9 @@ function updateBoard(colValue){
         }
     }
 }
+
+//function main check for win function that will look in all directions
+
 function checkForWin(){
     var height = board.length; //6
     var width = board[0].length;  //7
@@ -141,7 +148,6 @@ function checkForWin(){
                     playerPosition == board[r-2][c] &&
                     playerPosition == board[r-3][c]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
                 if(c+3< width &&
@@ -149,7 +155,6 @@ function checkForWin(){
                     playerPosition == board[r-2][c+2] &&
                     playerPosition == board[r-3][c+3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
                 if(c-3 >=0 &&
@@ -157,26 +162,36 @@ function checkForWin(){
                     playerPosition ==board[r-2][c-2]&&
                     playerPosition ==board[r-3][c-3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
             }
         }
     }
 }
+// function that increments the counter for each player per win
 
 function winGame(playerPosition) {
     if(playerPosition === 1) {
         var winCounter = parseInt($('.leftNumber').text());
         winCounter++;
         $('.leftNumber').text(winCounter);
+        $('.victoryPageText').text("Player " + playerPosition + " Wins!").css("color", "#ff42be");
     } else if (playerPosition === 2) {
         var winCounter = parseInt($('.rightNumber').text());
         winCounter++;
         $('.rightNumber').text(winCounter);
+        $('.victoryPageText').text("Player " + playerPosition + " Wins!").css("color", "#25f861");
     }
+    setTimeout(function(){
+        $('.container').removeClass("visible");
+        $('.container').addClass("hidden");
+    }, 800)
+    setTimeout(function() {             //triggers winPage
+        $('.victoryPage').addClass("visible")},900);
 }
+
 //checks to see if the game is a draw
+
 function checkForDraw(){
     var counter = 0;
     for(var c = 0; c<board[0].length; c++){
@@ -188,6 +203,16 @@ function checkForDraw(){
         console.log("the game is a tie");
         counter = 0;
     }
+}
+
+//to trigger when one player wins the game or draws
+function playGameAgain(){
+    $(".victoryPage").removeClass("visible");
+    $(".container").removeClass("hidden");
+    $(".selectionPage").removeClass("hidden");
+    $(".selectionPage").addClass("visible");
+    resetGame();
+
 }
 
 
@@ -240,8 +265,11 @@ function addMainPage(){
     $(".selectionPage").addClass("hidden");
     $(".selectionPage").removeClass("visible");
     $(".container").addClass("visible");
-
+    playerOneCoinDrop();
+    playerTwoCoinDrop();
 }
+
+// function to take coin off page once it is selected by a player
 
 function coinFly() {
     var topMeasure = 10000;
@@ -251,14 +279,30 @@ function coinFly() {
         $(this).animate({bottom: topMeasure + '%'}, 3000);
         $('.selectionPageText').text('Player Two Pick').css('color', '#25f861');
         var tokenSource = $(this).attr('src');
-        tokenImages.push(tokenSource);
+        tokenImages.unshift(tokenSource);
         coinLaunchOff();
     }
     if (tokenImages.length === 2){
         setTimeout(addMainPage, 800);
         return;
     }
+}
 
+// Functions that create coin when coin falls onto main game screen
+
+function playerOneCoinDrop() {
+    var playerOneToken = $('<div>').addClass('tokenPerPlayer');
+    var playerOneCoinImg = $('<img>').attr('src',tokenImages[0]);
+    playerOneCoinImg.appendTo(playerOneToken);
+    playerOneToken.appendTo($('.leftArea'));
+    $(playerOneToken).animate({bottom: 45+'%'}, 1500);
+}
+function playerTwoCoinDrop() {
+    var playerTwoToken = $('<div>').addClass('tokenPerPlayer');
+    var playerTwoCoinImg = $('<img>').attr('src',tokenImages[1]);
+    playerTwoCoinImg.appendTo(playerTwoToken);
+    playerTwoToken.appendTo($('.rightArea'));
+    $(playerTwoToken).animate({bottom: 45+'%'}, 1900);
 }
 
 // Audio Javascript
