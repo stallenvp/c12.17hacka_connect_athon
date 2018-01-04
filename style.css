@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    user-select: none;
 }
 body {
     background-color: black;
@@ -91,7 +92,7 @@ body {
     width: 70%;
     border-radius: 50%;
     right: 15%;
-    bottom: 200%;
+    bottom: 130%;
 }
 img {
     width: 100%;
