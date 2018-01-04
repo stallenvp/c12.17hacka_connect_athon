@@ -22,13 +22,11 @@ function initializeApp() {
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
     $(".playAgainButton").click(playGameAgain);
-<<<<<<< HEAD
     $(".playAgainButtonDraw").click(playGameAgain);
-=======
 
     //mute sound click handler
     $('.muteButton').click(muteSound);
->>>>>>> 7ec6af8314f9ad279f9ae581c58d01f40842465f
+
 }
 
 
