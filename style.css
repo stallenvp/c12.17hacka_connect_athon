@@ -15,7 +15,7 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    /*display: none;*/
+    display: none;
 }
 
 /* Header Design Layout */
@@ -184,23 +184,27 @@ img {
     visibility: hidden;
 }
 
-.drawScreen{
+.drawContainer{
     width: 100%;
     height: 100%;
     font-family: Orbitron;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url("images/drawscreenbackground.jpg");
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:5;
     display: none;
 }
-.victoryScreen{
+.victoryContainer{
     width: 100%;
     height: 100%;
     font-family: Orbitron;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url("images/drawscreenbackground.jpg");
-    display: none;
+    /*display: none;*/
     position: absolute;
     top:0;
     left:0;
@@ -209,7 +213,7 @@ img {
 .victoryScreenArea, .drawScreenArea {
     display: flex;
     margin: auto;
-    height: 70%;
+    height: 80%;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -219,7 +223,7 @@ img {
 .victoryScreenText, .drawScreenText{
     color: gold;
     font-weight: 600;
-    font-size: 6em;
+    font-size: 8vmin;
 }
 .victoryScreenBody, .drawScreenBody{
     height: 40%;
@@ -227,13 +231,13 @@ img {
     text-align:center;
     display: flex;
 }
-.victoryScreenBoard, .drawScreenBoard{
-    display: flex;
-    margin: 0 auto;
-    width: 100%;
-    height: 60%;
-    justify-content: center;
-}
+/*.victoryScreenBoard, .drawScreenBoard{*/
+    /*display: flex;*/
+    /*margin: 0 auto;*/
+    /*width: 100%;*/
+    /*height: 60%;*/
+    /*justify-content: center;*/
+/*}*/
 .victoryScreenButtonContainer, .drawScreenButtonContainer{
     display: flex;
     justify-content: center;
@@ -246,15 +250,21 @@ img {
     font-size: 2vmin;
     font-family: Orbitron;
     outline: none;
+    width: 30%;;
+    height: 30%;
 }
-
-innerText{
+.drawFooter, .victoryFooter{
+    height: 20%;
+    width: 80%;
+    display: flex;
+}
+.innerText{
     font-family: Orbitron;
     color: white;
 }
 .image{
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
 }
 
 
