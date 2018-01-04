@@ -9,6 +9,10 @@ function initializeApp() {
     $('#5').click(clickHandler);
     $('#6').click(clickHandler);
     selectionPageCoinCreation();
+
+
+    //clickhandlers for titlePage
+    $(".playButton").click(removeTitlePage);
 }
 
 
@@ -200,3 +204,9 @@ function selectionPageCoinCreation() {
     }
 }
 
+//clickhandler functions for screen transitions
+
+function removeTitlePage(){
+    $('.startPage').addClass("hidden");
+    $(".selectionPage").addClass("visible");
+}
