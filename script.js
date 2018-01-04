@@ -14,13 +14,23 @@ function initializeApp() {
     selectionPageCoinCreation();
     //create fly animation for selection page coins
     $('.selectionPageCoin').click(coinFly);
+    //create sound animation on mouseover over selection page coins
+    $('.selectionPageCoin').on('mouseover',runCoinShakeAudio);
+    $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
+    //create sound animation onclick to drop each token
 
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
+    $(".playAgainButton").click(playGameAgain);
 }
 
-//create coins
 
+
+// click handler functions
+var tokenImages = [];
+
+
+//create coins
 function coinCreation(col) {
     var token = $('<div>').addClass('token');
     var img = $('<img>').attr('src',tokenImages[player-1]);
@@ -45,7 +55,9 @@ function clickHandler() {
     var token = coinCreation(col);
     $(token).animate({bottom: currentStart+'%'}, 1000);
     bottomPositions[idOfColumn] += 16.8;
+    runTokenDropAudio();
     $('.col').toggleClass("playerTwo");
+
     checkForWin();
     checkForDraw();
 }
@@ -67,6 +79,12 @@ function resetGame(){
     ];
     player = 1;
     $('.col').removeClass("playerTwo");
+    $(".coinBox").empty();
+    selectionPageCoinCreation();
+    tokenImages=[];
+    $('.selectionPageCoin').click(coinFly);
+    $('.selectionPageText').text("Player One Pick").css("color", "#ff42be");
+
 
 }
 
@@ -129,7 +147,6 @@ function checkForWin(){
                     playerPosition == board[r-2][c] &&
                     playerPosition == board[r-3][c]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
                 if(c+3< width &&
@@ -137,7 +154,6 @@ function checkForWin(){
                     playerPosition == board[r-2][c+2] &&
                     playerPosition == board[r-3][c+3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
                 if(c-3 >=0 &&
@@ -145,7 +161,6 @@ function checkForWin(){
                     playerPosition ==board[r-2][c-2]&&
                     playerPosition ==board[r-3][c-3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
             }
@@ -159,12 +174,21 @@ function winGame(playerPosition) {
         var winCounter = parseInt($('.leftNumber').text());
         winCounter++;
         $('.leftNumber').text(winCounter);
+        $('.victoryPageText').text("Player " + playerPosition + " Wins!").css("color", "#ff42be");
     } else if (playerPosition === 2) {
         var winCounter = parseInt($('.rightNumber').text());
         winCounter++;
         $('.rightNumber').text(winCounter);
+        $('.victoryPageText').text("Player " + playerPosition + " Wins!").css("color", "#25f861");
     }
+    setTimeout(function(){
+        $('.container').removeClass("visible");
+        $('.container').addClass("hidden");
+    }, 800)
+    setTimeout(function() {             //triggers winPage
+        $('.victoryPage').addClass("visible")},900);
 }
+
 //checks to see if the game is a draw
 
 function checkForDraw(){
@@ -178,6 +202,16 @@ function checkForDraw(){
         console.log("the game is a tie");
         counter = 0;
     }
+}
+
+//to trigger when one player wins the game or draws
+function playGameAgain(){
+    $(".victoryPage").removeClass("visible");
+    $(".container").removeClass("hidden");
+    $(".selectionPage").removeClass("hidden");
+    $(".selectionPage").addClass("visible");
+    resetGame();
+
 }
 
 
@@ -244,7 +278,8 @@ function coinFly() {
         $(this).animate({bottom: topMeasure + '%'}, 3000);
         $('.selectionPageText').text('Player Two Pick').css('color', '#25f861');
         var tokenSource = $(this).attr('src');
-        tokenImages.push(tokenSource);
+        tokenImages.unshift(tokenSource);
+        coinLaunchOff();
     }
     if (tokenImages.length === 2){
         setTimeout(addMainPage, 800);
@@ -269,4 +304,20 @@ function playerTwoCoinDrop() {
     $(playerTwoToken).animate({bottom: 45+'%'}, 1900);
 }
 
-
+// Audio Javascript
+var coinShakeAudio = new Audio("sounds/coinsound.wav");
+var tokenDropAudio = new Audio("sounds/dropToken.wav");
+var coinLaunchAudio = new Audio("sounds/coinLaunchOff.wav");
+function runCoinShakeAudio() {
+    coinShakeAudio.play();
+}
+function stopCoinShakeAudio(){
+    coinShakeAudio.pause();
+    coinShakeAudio.currentTime = 0;
+}
+function runTokenDropAudio(){
+    tokenDropAudio.play();
+}
+function coinLaunchOff(){
+    coinLaunchAudio.play();
+}
