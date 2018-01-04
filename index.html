@@ -4,6 +4,7 @@
     <head>
         <title>Connect Four</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="script.js"></script>
@@ -21,7 +22,10 @@
 
             <!--Game Area including left right and center game board-->
             <div class="gameArea">
-                <div class="leftArea"></div>
+                <div class="leftArea">
+                    <div class="playerOneText">Player One</div>
+                    <div class="playerOneImage"></div>
+                </div>
                 <div class="gameBoard">
                     <div class="col" id="0">
                         <div class="tokenSpot"></div>
@@ -82,7 +86,10 @@
                     </div>
 
                 </div>
-                <div class="rightArea"></div>
+                <div class="rightArea">
+                    <div class="playerTwoText">Player Two</div>
+                    <div class="playerTwoImage"></div>
+                </div>
             </div>
 
 

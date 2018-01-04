@@ -32,7 +32,11 @@ var bottomPositions =
 
 function clickHandler() {
     var idOfColumn = $(this).attr('id');
+    if(board[0][idOfColumn]!==0){           //stop from creating more coins if full
+        return;
+    }
     updateBoard(idOfColumn);
+
     var currentStart = bottomPositions[idOfColumn];
     console.log(board);
     var col = $(this);
@@ -40,6 +44,24 @@ function clickHandler() {
     $(token).animate({bottom: currentStart+'%'}, 1000);
     bottomPositions[idOfColumn] += 16.8;
     checkForWin();
+    checkForDraw();
+}
+
+//function to reset game
+function resetGame(){
+    $(".token").remove();
+    bottomPositions =
+        [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1
+        ];
+    board = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]
+    ];
+    player = 1;
 }
 
 
@@ -111,6 +133,19 @@ function checkForWin(){
             }
 
         }
+    }
+}
+//checks to see if the game is a draw
+function checkForDraw(){
+    var counter = 0;
+    for(var c = 0; c<board[0].length; c++){
+        if(board[0][c]!== 0){
+            counter +=1;
+        }
+    }
+    if(counter ===7){
+        console.log("the game is a tie");
+        counter = 0;
     }
 }
 
