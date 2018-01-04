@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    user-select: none;
 }
 body {
     background-color: black;
@@ -109,12 +110,14 @@ img.playerOneImg {
 
 .token {
     position: absolute;
+
     height: 16%;
     width: 93%;
     /*border-radius: 50%;*/
     right: 4%;
-    bottom: 200%;
+    bottom: 130%;
     z-index: 0;
+
 }
 img {
     width: 100%;
