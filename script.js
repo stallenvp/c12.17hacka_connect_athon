@@ -86,6 +86,8 @@ function resetGame(){
     $('.selectionPageCoin').click(coinFly);
     $('.selectionPageText').text("Player One Pick").css("color", "#ff42be");
     $('.tokenPerPlayer').remove();
+    $('.selectionPageCoin').on('mouseover',runCoinShakeAudio);
+    $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
 }
 
 // array to hold src for each image when chosen from selection page
