@@ -256,6 +256,26 @@ body {
     visibility: visible;
 }
 
+
+/* Mute Button */
+.muteButton {
+    width: 2.5%;
+    height: 2.5%;
+    color: seashell;
+    font-size: 2vmin;
+    border: 1px solid;
+    text-align: center;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+.muteButton:hover {
+    cursor: pointer;
+    color: #1b6d85;
+    border-color: #1b6d85;
+    transform: scale(1.1);
+}
+
 /* Header Design Layout */
 
 .header {
@@ -434,7 +454,7 @@ img {
     flex-flow: column wrap;
     height: 100%;
     width: 100%;
-    background-image: url("images/WinScreen.jpg");
+    background-image: url("images/winPage2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     animation-name: fadeInGrow;
@@ -448,7 +468,7 @@ img {
     text-shadow: 5px 5px black;
     border: 2px solid seashell;
     font-family: 'Orbitron', sans-serif;
-    margin-top: 15%;
+    margin-top: 25%;
     padding: 1%;
 }
 .playAgainButton:hover {
