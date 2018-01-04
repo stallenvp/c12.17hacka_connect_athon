@@ -1,6 +1,10 @@
 * {
     box-sizing: border-box;
     user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 
 }
 body {
@@ -119,8 +123,6 @@ body {
     background-repeat: no-repeat;
     visibility: hidden;
     z-index: 4;
-
-    /*display: none;*/
 }
 
 .selectionPage.visible {
@@ -138,11 +140,11 @@ body {
     animation-duration: 2s;
     visibility: visible;
     z-index: 4;
-    /*display: none;*/
 }
+
 .selectionPageText {
+    color: #ff42be;
     font-size: 8vmin;
-    color: seashell;
     text-shadow: 5px 5px black;
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 5%;

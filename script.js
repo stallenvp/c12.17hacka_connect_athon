@@ -15,7 +15,6 @@ function initializeApp() {
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
 
-
 }
 
 
@@ -125,33 +124,43 @@ function checkForWin(){
             playerPosition == board[r][c+1] &&  //checks to the right
             playerPosition == board[r][c+2] &&
             playerPosition == board[r][c+3]){
-                console.log("player " + playerPosition + "wins");
+                console.log("player " + playerPosition + " wins");
             }
             if(r-3 >= 0){
                 if(playerPosition == board[r-1][c] && //checks above
                     playerPosition == board[r-2][c] &&
                     playerPosition == board[r-3][c]){
-                    console.log("player " + playerPosition + "wins");
+                    console.log("player " + playerPosition + " wins");
                     $('.victoryScreenText').text("Player" + playerPosition + "wins")
                 }
                 if(c+3< width &&
                     playerPosition == board[r-1][c+1] && //check up and right
                     playerPosition == board[r-2][c+2] &&
                     playerPosition == board[r-3][c+3]){
-                    console.log("player " + playerPosition + "wins");
+                    console.log("player " + playerPosition + " wins");
                     $('.victoryScreenText').text("Player" + playerPosition + "wins")
                 }
                 if(c-3 >=0 &&
                     playerPosition ==board[r-1][c-1]&&  //check up and left
                     playerPosition ==board[r-2][c-2]&&
                     playerPosition ==board[r-3][c-3]){
-                    console.log("player " + playerPosition + "wins");
+                    console.log("player " + playerPosition + " wins");
                     $('.victoryScreenText').text("Player" + playerPosition + "wins")
                 }
 
             }
 
         }
+    }
+}
+
+function winGame(playerPosition) {
+    if(playerPosition === 1) {
+        var winCounter = $('.leftNumber').text();
+        winCounter++;
+    } else if (playerPosition === 2) {
+        var winCounter = $('.rightNumber').text();
+        winCounter++;
     }
 }
 //checks to see if the game is a draw
@@ -221,7 +230,8 @@ function coinFly() {
         return;
     } else {
         $(this).animate({bottom: topMeasure + '%'}, 3000);
-        $('.selectionPageText').text('Player Two Pick');
+        $('.selectionPageText').text('Player Two Pick').css('color', '#25f861');
+        ;
         var tokenSource = $(this).attr('src');
         tokenImages.push(tokenSource);
     }
