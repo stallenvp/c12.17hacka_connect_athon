@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     user-select: none;
+
 }
 body {
     background-color: black;
@@ -53,7 +54,7 @@ body {
     margin-top: 2%;
     font-family: 'Orbitron', sans-serif;
     font-size: 5vmin;
-    color: seashell;
+    color: #ff42be;
     text-shadow: 5px 5px black;
     text-align: center;
 }
@@ -74,7 +75,7 @@ img.playerOneImg {
     margin-top: 2%;
     font-family: 'Orbitron', sans-serif;
     font-size: 5vmin;
-    color: seashell;
+    color: #25f861;
     text-shadow: 5px 5px black;
     text-align: center;
 }
@@ -96,16 +97,39 @@ img.playerOneImg {
     width: 14.285%;
     border: 1px solid;
     opacity: 1;
+    cursor: pointer;
 
+}
+.col.playerTwo {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    height: 100%;
+    width: 14.285%;
+    border: 1px solid;
+    opacity: 1;
+    cursor: pointer;
 
+}
+.col:hover {
+    /*border: 3px solid #ff42be;*/
+    box-shadow: .01em .01em .1em .3em rgb(255, 66, 190);
+    background-color: rgba(255, 38, 149, 0.28);
+}
+.col.playerTwo:hover{
+    box-shadow: .01em .01em .1em .3em rgb(37, 248, 97);
+    background-color: rgba(50, 255, 110, 0.32);
 }
 
 .tokenSpot {
     height: 16.67%;
     width: 100%;
-    border: 2px solid;
+    border: 1px solid white;
     margin: auto;
     z-index: 3;
+}
+.tokenSpot:hover{
+    cursor: pointer;
 }
 
 .token {
@@ -123,7 +147,9 @@ img {
     width: 100%;
     height: 100%;
 }
+
 /* Footer Design Layout */
+
 
 .footer {
     height: 20%;
@@ -140,6 +166,10 @@ img {
     width: 100%;
     height: 100%;
     display: none;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:5;
 }
 .drawScreenArea {
     display: flex;
