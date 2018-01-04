@@ -26,7 +26,11 @@ body {
 }
 @keyframes fadeInRight {
     from { opacity: 0; transform: translate(-20%); visibility: hidden }
-    to { opacity: .9; transform: translate(0%); visibility: visible}
+    to { opacity: 1; transform: translate(0%); visibility: visible}
+}
+@keyframes fadeInGrow {
+    from { opacity: 0; transform: scale(0); visibility: hidden }
+    to { opacity: 1; transform: scale(1); visibility: visible}
 
 }
 @keyframes fadeOutShrink {
@@ -119,8 +123,22 @@ body {
     background-repeat: no-repeat;
     visibility: hidden;
     z-index: 4;
-
-    /*display: none;*/
+}
+.selectionPage.hidden {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/selectionpage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    visibility: hidden;
+    z-index: 4;
+    animation-name: fadeOutShrink;
+    animation-duration: .7s;
 }
 
 .selectionPage.visible {
@@ -188,6 +206,17 @@ body {
 /* Main game Content */
 
 .container {
+    position: absolute;
+    background-image: url("images/wallpaper1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    visibility: hidden;
+}
+.container.hidden {
+    position: absolute;
     background-image: url("images/wallpaper1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -196,17 +225,21 @@ body {
 
     z-index: 2;
     visibility: hidden;
+    animation: fadeOutShrink;
+    animation-duration: 2s;
 }
+
 .container.visible {
+    position: absolute;
     background-image: url("images/wallpaper1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    animation-name: fadeInRight;
-    animation-duration: .4s;
+    animation-name: fadeInGrow;
+    animation-duration: 1s;
     z-index: 2;
-
+    visibility: visible;
 }
 
 /* Header Design Layout */
@@ -362,18 +395,6 @@ img {
     width: 100%;
     height: 100%;
 }
-
-/*!* Footer Design Layout *!*/
-
-
-/*.footer {*/
-    /*height: 20%;*/
-    /*width: 80%;*/
-    /*margin: auto;*/
-    /*border: 2px solid black;*/
-/*}*/
-
-/*Draw and Victory Screens*/
 
 .victoryPage{
     display: flex;
