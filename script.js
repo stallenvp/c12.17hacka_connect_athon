@@ -22,7 +22,13 @@ function initializeApp() {
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
     $(".playAgainButton").click(playGameAgain);
+<<<<<<< HEAD
     $(".playAgainButtonDraw").click(playGameAgain);
+=======
+
+    //mute sound click handler
+    $('.muteButton').click(muteSound);
+>>>>>>> 7ec6af8314f9ad279f9ae581c58d01f40842465f
 }
 
 
@@ -342,6 +348,20 @@ function stopCoinShakeAudio(){
     coinShakeAudio.pause();
     coinShakeAudio.currentTime = 0;
     coinShakeAudio.loop = true;
+}
+function muteSound(){
+    if(coinShakeAudio.volume === 0){
+        coinShakeAudio.volume = .5;
+        coinLaunchAudio.volume = .5;
+        tokenDropAudio.volume = .5;
+        victoryMusicAudio.volume = .5;
+    }
+    else{
+        coinShakeAudio.volume = 0;
+        coinLaunchAudio.volume = 0;
+        tokenDropAudio.volume = 0;
+        victoryMusicAudio.volume = 0;
+    }
 }
 function runTokenDropAudio(){
     tokenDropAudio.pause();
