@@ -89,7 +89,7 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    display: none;
+    /*display: none;*/
 }
 
 /* Header Design Layout */
@@ -253,7 +253,7 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 5;
-    display: none;
+    /*display: none;*/
 }
 
 .drawPage{
@@ -267,7 +267,7 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 5;
-    display: none;
+    /*display: none;*/
 }
 .victoryPage.fadeOut{
     animation: fadeOut;

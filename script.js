@@ -125,21 +125,21 @@ function checkForWin(){
                     playerPosition == board[r-2][c] &&
                     playerPosition == board[r-3][c]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryScreenText').text("Player" + playerPosition + "wins")
+                    $('.victoryPageText').text("Player " + playerPosition + " Wins!")
                 }
                 if(c+3< width &&
                     playerPosition == board[r-1][c+1] && //check up and right
                     playerPosition == board[r-2][c+2] &&
                     playerPosition == board[r-3][c+3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryScreenText').text("Player" + playerPosition + "wins")
+                    $('.victoryPageText').text("Player " + playerPosition + " Wins!")
                 }
                 if(c-3 >=0 &&
                     playerPosition ==board[r-1][c-1]&&  //check up and left
                     playerPosition ==board[r-2][c-2]&&
                     playerPosition ==board[r-3][c-3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryScreenText').text("Player" + playerPosition + "wins")
+                    $('.victoryPageText').text("Player " + playerPosition + " Wins!")
                 }
 
             }
