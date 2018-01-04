@@ -11,10 +11,17 @@ function initializeApp() {
     selectionPageCoinCreation();
     //create fly animation for selection page coins
     $('.selectionPageCoin').click(coinFly);
+    //create sound animation on mouseover over selection page coins
+    $('.selectionPageCoin').on('mouseover',runCoinShakeAudio);
+    $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
+    //create sound animation onclick to drop each token
+
+
 
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
 }
+
 
 
 // click handler functions
@@ -54,7 +61,9 @@ function clickHandler() {
     var token = coinCreation(col);
     $(token).animate({bottom: currentStart+'%'}, 1000);
     bottomPositions[idOfColumn] += 16.8;
+    runTokenDropAudio();
     $('.col').toggleClass("playerTwo");
+
     checkForWin();
     checkForDraw();
 }
@@ -242,6 +251,7 @@ function coinFly() {
         $('.selectionPageText').text('Player Two Pick').css('color', '#25f861');
         var tokenSource = $(this).attr('src');
         tokenImages.push(tokenSource);
+        coinLaunchOff();
     }
     if (tokenImages.length === 2){
         setTimeout(addMainPage, 800);
@@ -250,4 +260,20 @@ function coinFly() {
 
 }
 
-
+// Audio Javascript
+var coinShakeAudio = new Audio("sounds/coinsound.wav");
+var tokenDropAudio = new Audio("sounds/dropToken.wav");
+var coinLaunchAudio = new Audio("sounds/coinLaunchOff.wav");
+function runCoinShakeAudio() {
+    coinShakeAudio.play();
+}
+function stopCoinShakeAudio(){
+    coinShakeAudio.pause();
+    coinShakeAudio.currentTime = 0;
+}
+function runTokenDropAudio(){
+    tokenDropAudio.play();
+}
+function coinLaunchOff(){
+    coinLaunchAudio.play();
+}
