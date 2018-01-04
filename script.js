@@ -20,6 +20,7 @@ function initializeApp() {
 
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
+    $(".playAgainButton").click(playGameAgain);
 }
 
 
@@ -84,6 +85,12 @@ function resetGame(){
     ];
     player = 1;
     $('.col').removeClass("playerTwo");
+    $(".coinBox").empty();
+    selectionPageCoinCreation();
+    tokenImages=[];
+    $('.selectionPageCoin').click(coinFly);
+    $('.selectionPageText').text("Player One Pick").css("color", "#ff42be");
+
 
 }
 
@@ -140,7 +147,6 @@ function checkForWin(){
                     playerPosition == board[r-2][c] &&
                     playerPosition == board[r-3][c]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
                 if(c+3< width &&
@@ -148,7 +154,6 @@ function checkForWin(){
                     playerPosition == board[r-2][c+2] &&
                     playerPosition == board[r-3][c+3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
                 if(c-3 >=0 &&
@@ -156,7 +161,6 @@ function checkForWin(){
                     playerPosition ==board[r-2][c-2]&&
                     playerPosition ==board[r-3][c-3]){
                     console.log("player " + playerPosition + "wins");
-                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                     winGame(playerPosition);
                 }
             }
@@ -169,12 +173,21 @@ function winGame(playerPosition) {
         var winCounter = parseInt($('.leftNumber').text());
         winCounter++;
         $('.leftNumber').text(winCounter);
+        $('.victoryPageText').text("Player " + playerPosition + " Wins!").css("color", "#ff42be");
     } else if (playerPosition === 2) {
         var winCounter = parseInt($('.rightNumber').text());
         winCounter++;
         $('.rightNumber').text(winCounter);
+        $('.victoryPageText').text("Player " + playerPosition + " Wins!").css("color", "#25f861");
     }
+    setTimeout(function(){
+        $('.container').removeClass("visible");
+        $('.container').addClass("hidden");
+    }, 800)
+    setTimeout(function() {             //triggers winPage
+        $('.victoryPage').addClass("visible")},900);
 }
+
 //checks to see if the game is a draw
 function checkForDraw(){
     var counter = 0;
@@ -187,6 +200,16 @@ function checkForDraw(){
         console.log("the game is a tie");
         counter = 0;
     }
+}
+
+//to trigger when one player wins the game or draws
+function playGameAgain(){
+    $(".victoryPage").removeClass("visible");
+    $(".container").removeClass("hidden");
+    $(".selectionPage").removeClass("hidden");
+    $(".selectionPage").addClass("visible");
+    resetGame();
+
 }
 
 
@@ -239,7 +262,6 @@ function addMainPage(){
     $(".selectionPage").addClass("hidden");
     $(".selectionPage").removeClass("visible");
     $(".container").addClass("visible");
-
 }
 
 function coinFly() {
@@ -250,7 +272,7 @@ function coinFly() {
         $(this).animate({bottom: topMeasure + '%'}, 3000);
         $('.selectionPageText').text('Player Two Pick').css('color', '#25f861');
         var tokenSource = $(this).attr('src');
-        tokenImages.push(tokenSource);
+        tokenImages.unshift(tokenSource);
         coinLaunchOff();
     }
     if (tokenImages.length === 2){
