@@ -13,6 +13,9 @@ body {
     height: 100vh;
     margin: 0;
 }
+
+/* All Key Frames */
+
 @keyframes fadeOut {
     from {
         opacity: .9;
@@ -95,7 +98,6 @@ body {
     z-index: 6;
     visibility: hidden;
 }
-
 .startPageText, .drawPageText, .victoryPageText {
     font-size: 8vmin;
     color: seashell;
@@ -123,6 +125,7 @@ body {
 }
 
 /* coin selection page */
+
 .selectionPage {
     position: absolute;
     display: flex;
@@ -136,7 +139,6 @@ body {
     background-repeat: no-repeat;
     visibility: hidden;
     z-index: 4;
-
 }
 .selectionPage.hidden {
     position: absolute;
@@ -154,7 +156,6 @@ body {
     animation-name: fadeOutShrinkDown;
     animation-duration: .7s;
 }
-
 .selectionPage.visible {
     position: absolute;
     display: flex;
@@ -171,7 +172,6 @@ body {
     visibility: visible;
     z-index: 4;
 }
-
 .selectionPageText {
     color: #ff42be;
     font-size: 8vmin;
@@ -202,7 +202,6 @@ body {
     animation-iteration-count: infinite;
     cursor: pointer;
 }
-
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -236,13 +235,11 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-
     z-index: 2;
     visibility: hidden;
     animation: fadeOutShrink;
     animation-duration: 1.3s;
 }
-
 .container.visible {
     position: absolute;
     background-image: url("images/wallpaper1.jpg");
@@ -256,8 +253,8 @@ body {
     visibility: visible;
 }
 
-
 /* Mute Button */
+
 .muteButton {
     width: 2.5%;
     height: 2.5%;
@@ -284,9 +281,7 @@ body {
     height: 15%;
     width: 80%;
     margin: auto auto 2.5% auto;
-    /*border: 2px solid white;*/
 }
-
 .headerText {
     font-size: 8vmin;
     color: seashell;
@@ -311,7 +306,6 @@ body {
     margin: 0 auto;
     width: 15%;
     height: 60%;
-    /*border: 2px solid white;*/
 }
 .playerOneText {
     font-family: 'Orbitron', sans-serif;
@@ -325,7 +319,6 @@ body {
     font-size: 5vmin;
     color: #ff42be;
     text-shadow: 5px 5px black;
-    /*margin-right: 15%;*/
 }
 .winNumber {
     font-family: 'Orbitron', sans-serif;
@@ -342,7 +335,6 @@ body {
     margin: 0 auto;
     width: 15%;
     height: 60%;
-    /*border: 2px solid white;*/
 }
 .playerTwoText {
     text-align: center;
@@ -357,6 +349,7 @@ body {
 .rightNumber {
     color: #25f861;
 }
+
 /* Connect 4 Game Board and Cols */
 
 .gameBoard {
@@ -366,7 +359,6 @@ body {
     height: 100%;
     border: 2px solid white;
 }
-
 .col {
     position: relative;
     display: flex;
@@ -376,7 +368,6 @@ body {
     border: 1px solid white;
     opacity: 1;
     cursor: pointer;
-
 }
 .col.playerTwo {
     position: relative;
@@ -387,7 +378,6 @@ body {
     border: 1px solid white;
     opacity: 1;
     cursor: pointer;
-
 }
 .col:hover {
     /*border: 3px solid #ff42be;*/
@@ -398,7 +388,6 @@ body {
     box-shadow: .01em .01em .1em .3em rgb(37, 248, 97);
     background-color: rgba(50, 255, 110, 0.32);
 }
-
 .tokenSpot {
     height: 16.67%;
     width: 100%;
@@ -409,7 +398,6 @@ body {
 .tokenSpot:hover{
     cursor: pointer;
 }
-
 .token {
     position: absolute;
     height: 16%;
@@ -430,6 +418,8 @@ img {
     width: 100%;
     height: 100%;
 }
+
+/* Victory and Draw Game Pages */
 
 .victoryPage{
     position: absolute;
@@ -483,7 +473,6 @@ img {
     position: absolute;
     top: 8%;
 }
-
 .drawPage{
     position: absolute;
     display: flex;

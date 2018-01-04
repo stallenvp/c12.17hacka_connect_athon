@@ -18,24 +18,16 @@ function initializeApp() {
     $('.selectionPageCoin').on('mouseover',runCoinShakeAudio);
     $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
     //create sound animation onclick to drop each token
-
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
     $(".playAgainButton").click(playGameAgain);
     $(".playAgainButtonDraw").click(playGameAgain);
-
     //mute sound click handler
     $('.muteButton').click(muteSound);
-
 }
 
-
-
-// click handler functions
-var tokenImages = [];
-
-
 //create coins
+
 function coinCreation(col) {
     var token = $('<div>').addClass('token');
     var img = $('<img>').attr('src',tokenImages[player-1]);
@@ -43,10 +35,10 @@ function coinCreation(col) {
     token.appendTo(col);
     return token;
 }
+
 //array to track each column's bottom position to update for when coin drops in
 
-var bottomPositions =
-    [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
+var bottomPositions = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
 
 function clickHandler() {
     if(playerHasWon){
@@ -66,7 +58,6 @@ function clickHandler() {
     // runTokenDropAudio();
     setTimeout(runTokenDropAudio, 780);
     $('.col').toggleClass("playerTwo");
-
     checkForWin();
     checkForDraw();
 }
@@ -97,9 +88,7 @@ function resetGame(){
     $('.tokenPerPlayer').remove();
     $('.selectionPageCoin').on('mouseover',runCoinShakeAudio);
     $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
-
     playerHasWon = false;
-
 }
 
 // array to hold src for each image when chosen from selection page
@@ -139,13 +128,13 @@ function updateBoard(colValue){
 }
 
 //function main check for win function that will look in all directions
+
 var playerHasWon = false;
 
 function checkForWin(){
     if(playerHasWon){
         return;
     }
-
     var height = board.length; //6
     var width = board[0].length;  //7
     for(var r=height-1; r>=0; r--){ //iterate rows bottom to top;
@@ -186,10 +175,10 @@ function checkForWin(){
         }
     }
 }
+
 // function that increments the counter for each player per win
 
 function winGame(playerPosition) {
-
     victoryMusic();
     if(playerPosition === 1) {
         var winCounter = parseInt($('.leftNumber').text());
@@ -212,28 +201,28 @@ function winGame(playerPosition) {
 
 //checks to see if the game is a draw
 
-function checkForDraw(){
+function checkForDraw() {
     var counter = 0;
-    for(var c = 0; c<board[0].length; c++){
-        if(board[0][c]!== 0){
-            counter +=1;
+    for (var c = 0; c < board[0].length; c++) {
+        if (board[0][c] !== 0) {
+            counter += 1;
         }
     }
-    if(counter ===7){
+    if (counter === 7) {
         console.log("the game is a tie");
         counter = 0;
-        setTimeout(function(){
+        setTimeout(function () {
             $('.container').removeClass("visible");
             $('.container').addClass("hidden");
         }, 800);
-        setTimeout(function() {             //triggers winPage
-            $('.drawPage').addClass("visible")},900);
-
+        setTimeout(function () {             //triggers winPage
+            $('.drawPage').addClass("visible")
+        }, 900);
     }
-
 }
 
 //to trigger when one player wins the game or draws
+
 function playGameAgain(){
     $(".victoryPage").removeClass("visible");
     $(".drawPage").removeClass("visible");
@@ -241,9 +230,7 @@ function playGameAgain(){
     $(".selectionPage").removeClass("hidden");
     $(".selectionPage").addClass("visible");
     resetGame();
-
 }
-
 
 // Dom creation of coin elements on selection page
 
@@ -283,13 +270,13 @@ function selectionPageCoinCreation() {
     }
 }
 
-
-//clickhandler functions for screen transitions
+//click handler functions for screen transitions
 
 function removeTitlePage(){
     $('.startPage').addClass("hidden");
     $(".selectionPage").addClass("visible");
 }
+
 function addMainPage(){
     $(".selectionPage").addClass("hidden");
     $(".selectionPage").removeClass("visible");
@@ -326,6 +313,7 @@ function playerOneCoinDrop() {
     playerOneToken.appendTo($('.leftArea'));
     $(playerOneToken).animate({bottom: 45+'%'}, 1500);
 }
+
 function playerTwoCoinDrop() {
     var playerTwoToken = $('<div>').addClass('tokenPerPlayer');
     var playerTwoCoinImg = $('<img>').attr('src',tokenImages[0]);
@@ -335,18 +323,22 @@ function playerTwoCoinDrop() {
 }
 
 // Audio Javascript
+
 var coinShakeAudio = new Audio("sounds/coinsound1.wav");
 var tokenDropAudio = new Audio("sounds/dropToken1.wav");
 var coinLaunchAudio = new Audio("sounds/coinLaunchOff.wav");
 var victoryMusicAudio = new Audio("sounds/victoryMusic.mp3");
+
 function runCoinShakeAudio() {
     coinShakeAudio.play();
 }
+
 function stopCoinShakeAudio(){
     coinShakeAudio.pause();
     coinShakeAudio.currentTime = 0;
     coinShakeAudio.loop = true;
 }
+
 function muteSound(){
     if(coinShakeAudio.volume === 0){
         coinShakeAudio.volume = .5;
@@ -361,16 +353,19 @@ function muteSound(){
         victoryMusicAudio.volume = 0;
     }
 }
+
 function runTokenDropAudio(){
     tokenDropAudio.pause();
     tokenDropAudio.currentTime = 0;
     tokenDropAudio.play();
 }
+
 function coinLaunchOff(){
     coinLaunchAudio.pause();
     coinLaunchAudio.currentTime = 0;
     coinLaunchAudio.play();
 }
+
 function victoryMusic(){
     victoryMusicAudio.play();
 }
