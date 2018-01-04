@@ -214,17 +214,28 @@ function removeTitlePage(){
     $('.startPage').addClass("hidden");
     $(".selectionPage").addClass("visible");
 }
+function addMainPage(){
+    $(".selectionPage").addClass("hidden");
+    $(".selectionPage").removeClass("visible");
+    $(".container").addClass("visible");
+
+}
 
 function coinFly() {
-    var topMeasure = 10000;
-    if(tokenImages.length === 2) {
-        return;
-    } else {
-        $(this).animate({bottom: topMeasure + '%'}, 3000);
-        $('.selectionPageText').text('Player Two Pick');
-        var tokenSource = $(this).attr('src');
-        tokenImages.push(tokenSource);
-    }
+        var topMeasure = 10000;
+        if (tokenImages.length === 2) {  //to stop from spam clicking more coins
+            return;
+        } else {
+            $(this).animate({bottom: topMeasure + '%'}, 3000);
+            $('.selectionPageText').text('Player Two Pick');
+            var tokenSource = $(this).attr('src');
+            tokenImages.push(tokenSource);
+        }
+        if (tokenImages.length === 2){
+            setTimeout(addMainPage, 800);
+            return;
+        }
+
 }
 
 
