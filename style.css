@@ -178,7 +178,7 @@ img.playerOneImg {
     flex-flow: row wrap;
     height: 100%;
     width: 14.285%;
-    border: 1px solid;
+    border: 1px solid white;
     opacity: 1;
     cursor: pointer;
 
