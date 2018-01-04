@@ -9,11 +9,12 @@ function initializeApp() {
     $('#5').click(clickHandler);
     $('#6').click(clickHandler);
     selectionPageCoinCreation();
+    $('.selectionPageCoin').click(coinFly);
 }
 
 
 // click handler functions
-var tokenImages = ['images/trx.png','images/corecoin.png'];
+var tokenImages = [];
 
 
 //create coins
@@ -194,6 +195,18 @@ function selectionPageCoinCreation() {
     for(var i = 0; i < selectionPageTokens.length; i++) {
         var coinImg = $('<img>').addClass(selectionPageTokens[i].class).attr('src', selectionPageTokens[i].src).attr('id', selectionPageTokens[i].id);
         $('.coinBox').append(coinImg);
+    }
+}
+
+function coinFly() {
+    var topMeasure = 10000;
+    if(tokenImages.length === 2) {
+        return;
+    } else {
+        $(this).animate({bottom: topMeasure + '%'}, 3000);
+        $('.selectionPageText').text('Player Two Pick');
+        var tokenSource = $(this).attr('src');
+        tokenImages.push(tokenSource);
     }
 }
 
