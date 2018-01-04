@@ -10,8 +10,8 @@ function initializeApp() {
     $('#6').click(clickHandler);
 }
 var tokenImages = ['images/trx.png','images/corecoin.png']
-// click handler functions
 
+//create coins
 function coinCreation(col) {
     var token = $('<div>').addClass('token');
     var img = $('<img>').attr('src',tokenImages[player-1]);
@@ -19,6 +19,7 @@ function coinCreation(col) {
     token.appendTo(col);
     return token;
 }
+//array to track each column's bottom position to update for when coin drops in
 var bottomPositions =
     [
     0.1,
@@ -43,6 +44,7 @@ function clickHandler() {
     var token = coinCreation(col);
     $(token).animate({bottom: currentStart+'%'}, 1000);
     bottomPositions[idOfColumn] += 16.8;
+    $('.col').toggleClass("playerTwo");
     checkForWin();
     checkForDraw();
 }
@@ -62,6 +64,8 @@ function resetGame(){
         [0, 0, 0, 0, 0, 0, 0]
     ];
     player = 1;
+    $('.col').removeClass("playerTwo");
+
 }
 
 
