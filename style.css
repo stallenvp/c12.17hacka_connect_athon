@@ -15,7 +15,6 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    display: none;
 }
 
 /* Header Design Layout */
@@ -209,6 +208,7 @@ img {
     top:0;
     left:0;
     z-index:5;
+    display: none;
 }
 .victoryScreenArea, .drawScreenArea {
     display: flex;
