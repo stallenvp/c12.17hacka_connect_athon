@@ -22,6 +22,7 @@ function initializeApp() {
     //clickhandlers for titlePage
     $(".playButton").click(removeTitlePage);
     $(".playAgainButton").click(playGameAgain);
+    $(".playAgainButtonDraw").click(playGameAgain);
 }
 
 
@@ -44,6 +45,9 @@ var bottomPositions =
     [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
 
 function clickHandler() {
+    if(playerHasWon){
+        return;
+    }
     var idOfColumn = $(this).attr('id');
     if(board[0][idOfColumn]!==0){           //stop from creating more coins if full
         return;
@@ -83,11 +87,15 @@ function resetGame(){
     $(".coinBox").empty();
     selectionPageCoinCreation();
     tokenImages=[];
+    //reset clickhandlers and create coins again
     $('.selectionPageCoin').click(coinFly);
     $('.selectionPageText').text("Player One Pick").css("color", "#ff42be");
     $('.tokenPerPlayer').remove();
     $('.selectionPageCoin').on('mouseover',runCoinShakeAudio);
     $('.selectionPageCoin').on('mouseleave',stopCoinShakeAudio);
+
+    playerHasWon = false;
+
 }
 
 // array to hold src for each image when chosen from selection page
@@ -127,8 +135,13 @@ function updateBoard(colValue){
 }
 
 //function main check for win function that will look in all directions
+var playerHasWon = false;
 
 function checkForWin(){
+    if(playerHasWon){
+        return;
+    }
+
     var height = board.length; //6
     var width = board[0].length;  //7
     for(var r=height-1; r>=0; r--){ //iterate rows bottom to top;
@@ -141,28 +154,28 @@ function checkForWin(){
             playerPosition == board[r][c+1] &&  //checks to the right
             playerPosition == board[r][c+2] &&
             playerPosition == board[r][c+3]){
-                console.log("player " + playerPosition + " wins");
+                playerHasWon = true;
                 winGame(playerPosition);
             }
             if(r-3 >= 0){
                 if(playerPosition == board[r-1][c] && //checks above
                     playerPosition == board[r-2][c] &&
                     playerPosition == board[r-3][c]){
-                    console.log("player " + playerPosition + "wins");
+                    playerHasWon = true;
                     winGame(playerPosition);
                 }
                 if(c+3< width &&
                     playerPosition == board[r-1][c+1] && //check up and right
                     playerPosition == board[r-2][c+2] &&
                     playerPosition == board[r-3][c+3]){
-                    console.log("player " + playerPosition + "wins");
+                    playerHasWon = true;
                     winGame(playerPosition);
                 }
                 if(c-3 >=0 &&
                     playerPosition ==board[r-1][c-1]&&  //check up and left
                     playerPosition ==board[r-2][c-2]&&
                     playerPosition ==board[r-3][c-3]){
-                    console.log("player " + playerPosition + "wins");
+                    playerHasWon = true;
                     winGame(playerPosition);
                 }
             }
@@ -172,6 +185,7 @@ function checkForWin(){
 // function that increments the counter for each player per win
 
 function winGame(playerPosition) {
+
     victoryMusic();
     if(playerPosition === 1) {
         var winCounter = parseInt($('.leftNumber').text());
@@ -204,12 +218,21 @@ function checkForDraw(){
     if(counter ===7){
         console.log("the game is a tie");
         counter = 0;
+        setTimeout(function(){
+            $('.container').removeClass("visible");
+            $('.container').addClass("hidden");
+        }, 800);
+        setTimeout(function() {             //triggers winPage
+            $('.drawPage').addClass("visible")},900);
+
     }
+
 }
 
 //to trigger when one player wins the game or draws
 function playGameAgain(){
     $(".victoryPage").removeClass("visible");
+    $(".drawPage").removeClass("visible");
     $(".container").removeClass("hidden");
     $(".selectionPage").removeClass("hidden");
     $(".selectionPage").addClass("visible");

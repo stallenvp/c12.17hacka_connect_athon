@@ -479,16 +479,39 @@ img {
     z-index: 5;
     visibility: hidden;
 }
-.victoryPage.fadeOut{
-    animation: fadeOut;
-    animation-duration: 1.4s;
-    z-index: 6;
-    visibility: hidden;
+.drawPage.visible{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/drawscreenbackground.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 5;
+    animation-name: fadeInGrow;
+    animation-duration: 1.7s;
+    visibility: visible;
+}
+.playAgainButtonDraw{
+    font-size: 5vmin;
+    color: seashell;
+    text-shadow: 5px 5px black;
+    border: 2px solid seashell;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 15%;
+    padding: 1%;
+}
+.playAgainButtonDraw:hover {
+    cursor: pointer;
+    color: #1b6d85;
+    border-color: #1b6d85;
+    transform: scale(1.1);
+}
+.playAgainButtonDraw:active{
+    transform: scale(.9);
 }
 
-.drawPage.fadeOut{
-    animation: fadeOut;
-    animation-duration: 1.4s;
-    z-index: 5;
-    visibility: hidden;
-}
+
