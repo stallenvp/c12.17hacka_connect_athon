@@ -98,14 +98,31 @@
 <div class ="drawScreen">
     <div class="drawScreenArea">
         <div class="drawScreenBoard">
-            <p class="drawScreenText">DRAW!</p>
+            <p class="drawScreenText">You Tied!</p>
         </div>
-        <div class="drawScreenButtonContainer">
-            <button class="playAgain">
+        <button onclick="alert('You Win')" class="drawScreenButtonContainer">
+            <p class="innerText">
                 PLAY AGAIN
-            </button>
-        </div>
+            </p>
+            <img class="image" src="images/corecoin.png">
+        </button>
     </div>
 </div>
+
+
+<div class ="victoryScreen">
+    <div class="victoryScreenArea">
+        <div class="victoryScreenBoard">
+            <p class="victoryScreenText">Player 1 Wins!</p>
+        </div>
+        <button onclick="alert('You Win')" class="victoryScreenButtonContainer">
+            <p class="innerText">
+                PLAY AGAIN
+            </p>
+            <img class="image" src="images/trx.png">
+        </button>
+    </div>
+</div>
+
     </body>
 </html>

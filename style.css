@@ -14,6 +14,7 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
+    /*display: none;*/
 }
 
 /* Header Design Layout */
@@ -132,56 +133,144 @@ img {
     border: 2px solid black;
 }
 
-/*Draw Screen*/
+/*Draw and Victory Screens*/
+@keyframes fadeOut {
+    from {
+        opacity: .9;
+        visibility: visible
+    }
+    to {
+        opacity: 0;
+        visibility: hidden
+    }
+}
+.victoryScreen.fadeOut{
+    animation: fadeOut;
+    animation-duration: 1.4s;
+    z-index: 6;
+    visibility: hidden;
+}
+
+.drawScreen.fadeOut{
+    animation: fadeOut;
+    animation-duration: 1.4s;
+    z-index: 5;
+    visibility: hidden;
+}
+
 .drawScreen{
-    background-image: url("images/drawscreenbackground.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
     width: 100%;
     height: 100%;
+    font-family: Orbitron;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("images/drawscreenbackground.jpg");
     display: none;
 }
-.drawScreenArea {
+.victoryScreen{
+    width: 100%;
+    height: 100%;
+    font-family: Orbitron;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("images/drawscreenbackground.jpg");
+    display: none;
+}
+.victoryScreenArea, .drawScreenArea {
     display: flex;
     margin: auto;
-    height: 60%;
+    height: 70%;
     width: 100%;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
-.drawScreenText{
+
+.victoryScreenText, .drawScreenText{
     color: gold;
     font-weight: 600;
     font-size: 6em;
 }
-.drawScreenBody{
+.victoryScreenBody, .drawScreenBody{
     height: 40%;
     width: 100%;
     text-align:center;
     display: flex;
 }
-
-.drawScreenBoard{
+.victoryScreenBoard, .drawScreenBoard{
     display: flex;
     margin: 0 auto;
     width: 100%;
     height: 60%;
     justify-content: center;
 }
-
-.drawScreenButtonContainer{
-    height: 40%;
-    width: 100%;
+.victoryScreenButtonContainer, .drawScreenButtonContainer{
     display: flex;
     justify-content: center;
-    align-content: flex-end;
-}
-.playAgain{
-    height: 75%;
-    width: 10%;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+    color: white;
+    border-color: transparent;
     border-radius: 50%;
-    background-image: url("images/trx.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 2vmin;
+    font-family: Orbitron;
+    outline: none;
 }
+
+innerText{
+    font-family: Orbitron;
+    color: white;
+}
+.image{
+    width: 100%;
+    height: 100%;
+}
+
+
+/*.drawScreenArea {*/
+/*display: flex;*/
+/*margin: auto;*/
+/*height: 60%;*/
+/*width: 100%;*/
+/*flex-direction: column;*/
+/*}*/
+/*.drawScreenText{*/
+/*color: gold;*/
+/*font-weight: 600;*/
+/*font-size: 6em;*/
+/*}*/
+/*.drawScreenBody{*/
+/*height: 40%;*/
+/*width: 100%;*/
+/*text-align:center;*/
+/*display: flex;*/
+/*}*/
+
+/*.drawScreenBoard{*/
+/*display: flex;*/
+/*margin: 0 auto;*/
+/*width: 100%;*/
+/*height: 60%;*/
+/*justify-content: center;*/
+/*}*/
+
+/*.drawScreenButtonContainer{*/
+/*height: 40%;*/
+/*width: 100%;*/
+/*display: flex;*/
+/*justify-content: center;*/
+/*align-content: flex-end;*/
+/*}*/
+
+
+/*.playAgain{*/
+/*height: 75%;*/
+/*width: 10%;*/
+/*border-radius: 50%;*/
+/*!*background-image: url("images/trx.png");*!*/
+/*background-size: cover;*/
+/*background-repeat: no-repeat;*/
+/*font-size: 1.5em;*/
+/*font-weight: bold;*/
+/*}*/
