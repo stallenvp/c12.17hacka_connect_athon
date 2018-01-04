@@ -172,6 +172,7 @@ function checkForWin(){
 // function that increments the counter for each player per win
 
 function winGame(playerPosition) {
+    victoryMusic();
     if(playerPosition === 1) {
         var winCounter = parseInt($('.leftNumber').text());
         winCounter++;
@@ -307,15 +308,17 @@ function playerTwoCoinDrop() {
 }
 
 // Audio Javascript
-var coinShakeAudio = new Audio("sounds/coinsound.wav");
+var coinShakeAudio = new Audio("sounds/coinsound1.wav");
 var tokenDropAudio = new Audio("sounds/dropToken1.wav");
 var coinLaunchAudio = new Audio("sounds/coinLaunchOff.wav");
+var victoryMusicAudio = new Audio("sounds/victoryMusic.mp3");
 function runCoinShakeAudio() {
     coinShakeAudio.play();
 }
 function stopCoinShakeAudio(){
     coinShakeAudio.pause();
     coinShakeAudio.currentTime = 0;
+    coinShakeAudio.loop = true;
 }
 function runTokenDropAudio(){
     tokenDropAudio.pause();
@@ -326,4 +329,7 @@ function coinLaunchOff(){
     coinLaunchAudio.pause();
     coinLaunchAudio.currentTime = 0;
     coinLaunchAudio.play();
+}
+function victoryMusic(){
+    victoryMusicAudio.play();
 }
