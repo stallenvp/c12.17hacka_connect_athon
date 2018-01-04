@@ -130,26 +130,24 @@ function checkForWin(){
                 if(playerPosition == board[r-1][c] && //checks above
                     playerPosition == board[r-2][c] &&
                     playerPosition == board[r-3][c]){
-                    console.log("player " + playerPosition + " wins");
-                    $('.victoryScreenText').text("Player" + playerPosition + "wins")
+                    console.log("player " + playerPosition + "wins");
+                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                 }
                 if(c+3< width &&
                     playerPosition == board[r-1][c+1] && //check up and right
                     playerPosition == board[r-2][c+2] &&
                     playerPosition == board[r-3][c+3]){
-                    console.log("player " + playerPosition + " wins");
-                    $('.victoryScreenText').text("Player" + playerPosition + "wins")
+                    console.log("player " + playerPosition + "wins");
+                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                 }
                 if(c-3 >=0 &&
                     playerPosition ==board[r-1][c-1]&&  //check up and left
                     playerPosition ==board[r-2][c-2]&&
                     playerPosition ==board[r-3][c-3]){
-                    console.log("player " + playerPosition + " wins");
-                    $('.victoryScreenText').text("Player" + playerPosition + "wins")
+                    console.log("player " + playerPosition + "wins");
+                    $('.victoryPageText').text("Player " + playerPosition + " Wins!");
                 }
-
             }
-
         }
     }
 }
@@ -223,18 +221,28 @@ function removeTitlePage(){
     $('.startPage').addClass("hidden");
     $(".selectionPage").addClass("visible");
 }
+function addMainPage(){
+    $(".selectionPage").addClass("hidden");
+    $(".selectionPage").removeClass("visible");
+    $(".container").addClass("visible");
+
+}
 
 function coinFly() {
     var topMeasure = 10000;
-    if(tokenImages.length === 2) {
+    if (tokenImages.length === 2) {  //to stop from spam clicking more coins
         return;
     } else {
         $(this).animate({bottom: topMeasure + '%'}, 3000);
         $('.selectionPageText').text('Player Two Pick').css('color', '#25f861');
-        ;
         var tokenSource = $(this).attr('src');
         tokenImages.push(tokenSource);
     }
+    if (tokenImages.length === 2){
+        setTimeout(addMainPage, 800);
+        return;
+    }
+
 }
 
 
