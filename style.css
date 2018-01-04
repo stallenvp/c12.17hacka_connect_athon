@@ -9,6 +9,77 @@ body {
     height: 100vh;
     margin: 0;
 }
+
+/* start page */
+
+.startPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/startpage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 5;
+}
+.startPageText {
+    font-size: 8vmin;
+    color: seashell;
+    text-shadow: 5px 5px black;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 15%;
+}
+.playButton {
+    font-size: 5vmin;
+    color: seashell;
+    text-shadow: 5px 5px black;
+    border: 2px solid seashell;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 15%;
+    padding: 1%;
+}
+.playButton:hover {
+    cursor: pointer;
+    color: #1b6d85;
+    border-color: #1b6d85;
+}
+
+/* coin selection page */
+
+.selectionPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    width: 100%;
+    background-image: url("images/selectionpage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 4;
+}
+.selectionPageText {
+    font-size: 8vmin;
+    color: seashell;
+    text-shadow: 5px 5px black;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 5%;
+}
+.coinBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 30%;
+}
+.selectionPageCoin {
+    width: 15%;
+    height: 70%;
+    margin: auto;
+}
+
 .container {
     background-image: url("images/wallpaper1.jpg");
     background-size: cover;
@@ -26,7 +97,7 @@ body {
     height: 15%;
     width: 80%;
     margin: auto auto 2.5% auto;
-    border: 2px solid black;
+    /*border: 2px solid white;*/
 }
 
 .headerText {
@@ -48,7 +119,7 @@ body {
     margin: 0 auto;
     width: 15%;
     height: 50%;
-    border: 2px solid black;
+    /*border: 2px solid white;*/
 }
 .playerOneText {
     margin-top: 2%;
@@ -69,7 +140,7 @@ img.playerOneImg {
     margin: 0 auto;
     width: 15%;
     height: 50%;
-    border: 2px solid black;
+    /*border: 2px solid white;*/
 }
 .playerTwoText {
     margin-top: 2%;
@@ -86,7 +157,7 @@ img.playerOneImg {
     margin: 0 auto;
     width: 50%;
     height: 100%;
-    border: 2px solid black;
+    border: 2px solid white;
 }
 
 .col {
@@ -95,7 +166,7 @@ img.playerOneImg {
     flex-flow: row wrap;
     height: 100%;
     width: 14.285%;
-    border: 1px solid;
+    border: 1px solid white;
     opacity: 1;
     cursor: pointer;
 
@@ -134,10 +205,8 @@ img.playerOneImg {
 
 .token {
     position: absolute;
-
     height: 16%;
     width: 93%;
-    /*border-radius: 50%;*/
     right: 4%;
     bottom: 130%;
     z-index: 0;
@@ -148,15 +217,15 @@ img {
     height: 100%;
 }
 
-/* Footer Design Layout */
+/*!* Footer Design Layout *!*/
 
 
-.footer {
-    height: 20%;
-    width: 80%;
-    margin: auto;
-    border: 2px solid black;
-}
+/*.footer {*/
+    /*height: 20%;*/
+    /*width: 80%;*/
+    /*margin: auto;*/
+    /*border: 2px solid black;*/
+/*}*/
 
 /*Draw and Victory Screens*/
 @keyframes fadeOut {

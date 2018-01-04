@@ -8,8 +8,13 @@ function initializeApp() {
     $('#4').click(clickHandler);
     $('#5').click(clickHandler);
     $('#6').click(clickHandler);
+    selectionPageCoinCreation();
 }
-var tokenImages = ['images/trx.png','images/corecoin.png']
+
+
+// click handler functions
+var tokenImages = ['images/trx.png','images/corecoin.png'];
+
 
 //create coins
 function coinCreation(col) {
@@ -150,6 +155,45 @@ function checkForDraw(){
     if(counter ===7){
         console.log("the game is a tie");
         counter = 0;
+    }
+}
+
+
+// Dom creation of coin elements on selection page
+
+var selectionPageTokens =
+    [
+        {
+            'src': 'images/bitcoin.png',
+            'class': 'selectionPageCoin',
+            'id': 'bitcoin'
+        },
+        {
+            'src': 'images/corecoin.png',
+            'class': 'selectionPageCoin',
+            'id': 'corecoin'
+        },
+        {
+            'src': 'images/ripple.png',
+            'class': 'selectionPageCoin',
+            'id': 'ripple'
+        },
+        {
+            'src': 'images/trx.png',
+            'class': 'selectionPageCoin',
+            'id': 'tron'
+        },
+        {
+            'src': 'images/etherium.png',
+            'class': 'selectionPageCoin',
+            'id': 'etherium'
+        }
+    ];
+
+function selectionPageCoinCreation() {
+    for(var i = 0; i < selectionPageTokens.length; i++) {
+        var coinImg = $('<img>').addClass(selectionPageTokens[i].class).attr('src', selectionPageTokens[i].src).attr('id', selectionPageTokens[i].id);
+        $('.coinBox').append(coinImg);
     }
 }
 
