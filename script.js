@@ -25,6 +25,7 @@ function initializeApp() {
     //mute sound click handler
     $('.muteButton').click(muteSound);
     CoinSelectAudio.play();
+    CoinSelectAudio.loop = true;
 }
 
 //create coins
@@ -51,7 +52,6 @@ function clickHandler() {
     }
     updateBoard(idOfColumn);
     var currentStart = bottomPositions[idOfColumn];
-    console.log(board);
     var col = $(this);
     var token = coinCreation(col);
     $(token).animate({bottom: currentStart+'%'}, 1000);
@@ -214,7 +214,6 @@ function checkForDraw() {
         }
     }
     if (counter === 7) {
-        console.log("the game is a tie");
         counter = 0;
         setTimeout(function () {
             $('.container').removeClass("visible");
@@ -236,6 +235,7 @@ function playGameAgain(){
     WinAudio.pause();
     WinAudio.currentTime = 0;
     CoinSelectAudio.play();
+    CoinSelectAudio.loop = true;
     $(".victoryPage").removeClass("visible");
     $(".drawPage").removeClass("visible");
     $(".container").removeClass("hidden");
