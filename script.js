@@ -24,6 +24,7 @@ function initializeApp() {
     $(".playAgainButtonDraw").click(playGameAgain);
     //mute sound click handler
     $('.muteButton').click(muteSound);
+    CoinSelectAudio.play();
 }
 
 //create coins
@@ -179,7 +180,7 @@ function checkForWin(){
 // function that increments the counter for each player per win
 
 function winGame(playerPosition) {
-    victoryMusic();
+
     if(playerPosition === 1) {
         var winCounter = parseInt($('.leftNumber').text());
         winCounter++;
@@ -194,6 +195,10 @@ function winGame(playerPosition) {
     setTimeout(function(){
         $('.container').removeClass("visible");
         $('.container').addClass("hidden");
+        MainGameAudio.pause();
+        MainGameAudio.currentTime = 0;
+        WinAudio.play();
+        WinAudio.loop = true;
     }, 800)
     setTimeout(function() {             //triggers winPage
         $('.victoryPage').addClass("visible")},900);
@@ -214,6 +219,10 @@ function checkForDraw() {
         setTimeout(function () {
             $('.container').removeClass("visible");
             $('.container').addClass("hidden");
+            MainGameAudio.pause();
+            MainGameAudio.currentTime = 0;
+            WinAudio.play();
+            WinAudio.loop = true;
         }, 800);
         setTimeout(function () {             //triggers winPage
             $('.drawPage').addClass("visible")
@@ -224,6 +233,9 @@ function checkForDraw() {
 //to trigger when one player wins the game or draws
 
 function playGameAgain(){
+    WinAudio.pause();
+    WinAudio.currentTime = 0;
+    CoinSelectAudio.play();
     $(".victoryPage").removeClass("visible");
     $(".drawPage").removeClass("visible");
     $(".container").removeClass("hidden");
@@ -275,11 +287,11 @@ function selectionPageCoinCreation() {
 function removeTitlePage(){
     $('.startPage').addClass("hidden");
     $(".selectionPage").addClass("visible");
+    playGameAudio.play();
 }
 
 function addMainPage(){
-    $(".selectionPage").addClass("hidden");
-    $(".selectionPage").removeClass("visible");
+
     $(".container").addClass("visible");
     playerOneCoinDrop();
     playerTwoCoinDrop();
@@ -299,7 +311,15 @@ function coinFly() {
         coinLaunchOff();
     }
     if (tokenImages.length === 2){
-        setTimeout(addMainPage, 800);
+
+        setTimeout(addMainPage, 770);
+        setTimeout(function(){
+            $(".selectionPage").addClass("hidden");
+            $(".selectionPage").removeClass("visible");
+        }, 500);
+        CoinSelectAudio.pause();
+        CoinSelectAudio.currentTime = 0;
+        MainGameAudio.play();
         return;
     }
 }
@@ -325,9 +345,17 @@ function playerTwoCoinDrop() {
 // Audio Javascript
 
 var coinShakeAudio = new Audio("sounds/coinsound1.wav");
+coinShakeAudio.volume = .5;
 var tokenDropAudio = new Audio("sounds/dropToken1.wav");
 var coinLaunchAudio = new Audio("sounds/coinLaunchOff.wav");
 var victoryMusicAudio = new Audio("sounds/victoryMusic.mp3");
+var playGameAudio = new Audio("sounds/ClickPlay.mp3");
+var CoinSelectAudio = new Audio("sounds/CoinSelectAudio.mp3");
+CoinSelectAudio.volume = .6;
+var MainGameAudio = new Audio("sounds/MainGameAudio.mp3");
+MainGameAudio.volume = .6;
+var WinAudio = new Audio("sounds/WinAudio.mp3");
+WinAudio.volume = .6;
 
 function runCoinShakeAudio() {
     coinShakeAudio.play();
@@ -342,15 +370,21 @@ function stopCoinShakeAudio(){
 function muteSound(){
     if(coinShakeAudio.volume === 0){
         coinShakeAudio.volume = .5;
-        coinLaunchAudio.volume = .5;
-        tokenDropAudio.volume = .5;
-        victoryMusicAudio.volume = .5;
+        coinLaunchAudio.volume = 1;
+        tokenDropAudio.volume = 1;
+        victoryMusicAudio.volume = 1;
+        CoinSelectAudio.volume = .6;
+        MainGameAudio.volume = .6;
+        WinAudio.volume = .6;
     }
     else{
         coinShakeAudio.volume = 0;
         coinLaunchAudio.volume = 0;
         tokenDropAudio.volume = 0;
         victoryMusicAudio.volume = 0;
+        CoinSelectAudio.volume = 0;
+        MainGameAudio.volume = 0;
+        WinAudio.volume = 0;
     }
 }
 
